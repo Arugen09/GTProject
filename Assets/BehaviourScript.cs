@@ -5,19 +5,15 @@ using UnityEngine;
 public class BehaviourScript : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public 
+    public float moveSpeed;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update() 
+    void FixedUpdate() 
     {
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-        {
-            rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * 10, Input.GetAxis("Vertical") * 10));
-        }        
+        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, Input.GetAxis("Vertical") * moveSpeed);      
     }
 }
