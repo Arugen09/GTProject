@@ -1,7 +1,8 @@
 ﻿<Properties StartupConfiguration="{6E948C69-796A-5080-FE4D-8199C460A519}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/BehaviourScript.cs">
     <Files>
-      <File FileName="Assets/BehaviourScript.cs" Line="6" Column="2" />
+      <File FileName="Assets/BehaviourScript.cs" Line="35" Column="2" />
+      <File FileName="Assets/EnemyBehaviourScript.cs" Line="7" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,8 +17,8 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ed3f6fd5-6c36-4211-8f88-bfc96bee2488" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="105dfb85-c590-4a73-9fb7-ce66e9c32b4a" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
