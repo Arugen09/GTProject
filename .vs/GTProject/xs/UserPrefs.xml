@@ -3,7 +3,7 @@
     <Files>
       <File FileName="Assets/BehaviourScript.cs" Line="35" Column="2" />
       <File FileName="Assets/EnemyBehaviourScript.cs" />
-      <File FileName="Assets/CameraPanScript.cs" Line="7" Column="15" />
+      <File FileName="Assets/CameraPanScript.cs" Line="23" Column="28" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
