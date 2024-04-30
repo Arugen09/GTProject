@@ -1,15 +1,16 @@
 ﻿<Properties StartupConfiguration="{6E948C69-796A-5080-FE4D-8199C460A519}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/BehaviourScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CameraPanScript.cs">
     <Files>
       <File FileName="Assets/BehaviourScript.cs" Line="35" Column="2" />
-      <File FileName="Assets/EnemyBehaviourScript.cs" Line="7" Column="1" />
+      <File FileName="Assets/EnemyBehaviourScript.cs" />
+      <File FileName="Assets/CameraPanScript.cs" Line="7" Column="15" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="GTProject" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="BehaviourScript.cs" selected="True" />
+              <Node name="CameraPanScript.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -18,7 +19,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="105dfb85-c590-4a73-9fb7-ce66e9c32b4a" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="79b6c00e-0cb9-4954-be26-0d00fa359650" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
