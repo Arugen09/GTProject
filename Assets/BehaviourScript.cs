@@ -10,12 +10,14 @@ public class BehaviourScript : MonoBehaviour
     public Transform transform;
 
     public float dashSpeed;
+    
 
     private bool hasDowned;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         camera = GameObject.Find("Main Camera").GetComponent<Camera>();
         dashSpeed *= -1;
         hasDowned = false;
