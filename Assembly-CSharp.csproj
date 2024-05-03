@@ -60,7 +60,10 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets/BreakableScript.cs" />
+    <Compile Include="Assets/FireBehaviour.cs" />
     <Compile Include="Assets/EnemyBehaviourScript.cs" />
+    <Compile Include="Assets/OriginalCutscene.cs" />
     <Compile Include="Assets/BehaviourScript.cs" />
     <Compile Include="Assets/CameraPanScript.cs" />
     <Compile Include="Assets/MovementScript.cs" />
@@ -938,12 +941,12 @@
       <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Flow">
-      <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.VisualEffectGraph.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.VisualEffectGraph.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Flow">
+      <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
@@ -980,6 +983,10 @@
     </Reference>
     <Reference Include="Unity.2D.Aseprite.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.2D.Aseprite.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VSCode.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Editor">
