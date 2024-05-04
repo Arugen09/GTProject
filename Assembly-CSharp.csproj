@@ -60,13 +60,16 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.22f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets/BreakableScript.cs" />
-    <Compile Include="Assets/FireBehaviour.cs" />
-    <Compile Include="Assets/EnemyBehaviourScript.cs" />
-    <Compile Include="Assets/OriginalCutscene.cs" />
-    <Compile Include="Assets/BehaviourScript.cs" />
-    <Compile Include="Assets/CameraPanScript.cs" />
-    <Compile Include="Assets/MovementScript.cs" />
+    <Compile Include="Assets/ExplosionSystemScript.cs" />
+    <Compile Include="Assets/PowerPlantBehaviour.cs" />
+    <Compile Include="Assets/LeverScript.cs" />
+    <Compile Include="Assets/Scripts/MovementScript.cs" />
+    <Compile Include="Assets/Scripts/EnemyBehaviourScript.cs" />
+    <Compile Include="Assets/Scripts/BreakableScript.cs" />
+    <Compile Include="Assets/Scripts/BehaviourScript.cs" />
+    <Compile Include="Assets/Scripts/CameraPanScript.cs" />
+    <Compile Include="Assets/Scripts/FireBehaviour.cs" />
+    <Compile Include="Assets/Scripts/OriginalCutscene.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

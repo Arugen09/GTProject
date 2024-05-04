@@ -11878,8 +11878,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87374a9891e242a4284881701389ee2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 709480636}
   ps: {fileID: 5730910151966745905, guid: 17d2cf191c334944aa48616f20a5388a, type: 3}
+  child: {fileID: 0}
+  tr: {fileID: 709480638}
+  hasExploded: 0
 --- !u!1 &1168935744
 GameObject:
   m_ObjectHideFlags: 0

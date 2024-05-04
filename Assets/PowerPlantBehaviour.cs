@@ -11,6 +11,8 @@ public class PowerPlantBehaviour : MonoBehaviour
 
     public GameObject child;
 
+    public Transform tr;
+
     public bool hasExploded = false;
 
 
@@ -29,7 +31,7 @@ public class PowerPlantBehaviour : MonoBehaviour
         print(child.GetComponent<SpriteRenderer>().sprite.ToString());
         if (child.GetComponent<LeverScript>().hasBeenPressed && !hasExploded)
         {
-            Instantiate(ps);
+            Instantiate(ps, tr.position, Quaternion.identity);
             hasExploded = true;
         }
     }
