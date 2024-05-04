@@ -50,7 +50,6 @@ public class EnemyBehaviourScript : MonoBehaviour
             if (phase == 3 && rb.position.x > 26.5)
             {
                 rb.velocity = new Vector2(-11, 0);
-                print(rb.position);
             }
             else if (phase == 3 && rb.position.x <= 26.52)
             {
