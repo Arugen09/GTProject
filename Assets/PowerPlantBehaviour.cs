@@ -15,24 +15,61 @@ public class PowerPlantBehaviour : MonoBehaviour
 
     public bool hasExploded = false;
 
+    public bool hasPannedCamera = false;
+
+    public bool hasFinishedPanning = false;
+
+    public CameraScript camera;
+
+    public ParticleSystem particles;
+
+    public float timeToSee = 9f;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        int x = 0;
         foreach (Transform childTransform in this.transform)
         {
-            child = childTransform.gameObject;
+            print(x);
+            if (x == 0)
+            {
+                child = childTransform.gameObject;
+                
+            }
+            x += 1;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        print(child.GetComponent<SpriteRenderer>().sprite.ToString());
-        if (child.GetComponent<LeverScript>().hasBeenPressed && !hasExploded)
+        if (child.GetComponent<LeverScript>().hasBeenPressed && !hasPannedCamera && !hasExploded)
         {
-            Instantiate(ps, tr.position, Quaternion.identity);
+            camera.panCamera(new Vector3(tr.position.x, tr.position.y, -10f));
+            
+            hasPannedCamera = true;
+        }
+
+        if ((hasPannedCamera || hasExploded) && !hasFinishedPanning)
+        {
+            timeToSee -= Time.deltaTime;
+        }
+
+        if (hasPannedCamera && timeToSee <= 7)
+        {
+            particles = Instantiate(ps, tr.position, Quaternion.identity);
+            hasPannedCamera = false;
             hasExploded = true;
         }
+
+        if (hasExploded && timeToSee <= 0)
+        {
+            camera.resetCamera();
+            hasFinishedPanning = true;
+        }
+
+        // if (hasExploded && particles.GetComponent<duration)
     }
 }

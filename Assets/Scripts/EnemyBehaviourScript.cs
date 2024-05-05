@@ -12,21 +12,29 @@ public class EnemyBehaviourScript : MonoBehaviour
     public bool shouldStartTimer = false;
     public float time = 0.5f;
     public bool cutsceneDone = false;
-
+    public GameObject brickPreFab;
+    public GameObject coverUp;
     public int phase = 0;
+
+    public float tempTime = 2f;
 
     // Start is called before the first frame update
     void Start()
     {
         PlayerSprite = GameObject.Find("Player");
-        this.gameObject.AddComponent<OriginalCutscene>();
-        rb.velocity = new Vector2(10, 0);
         phase = 1;
+        print(rb.position);
+        if ((Vector2) rb.position == new Vector2(-58f, -22.5f))
+        {
+            Destroy(GetComponent<EnemyBehaviourScript>());
+            
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (!cutsceneDone)
         {
             if (phase == 1  && rb.position.x < 41)
@@ -38,30 +46,51 @@ public class EnemyBehaviourScript : MonoBehaviour
                 phase += 1;
             }
 
-            if (phase == 2 && rb.position.y > -15.5)
+            if (phase == 2 && rb.position.y > -15)
             {
                 rb.velocity = new Vector2(0, -10);
             }
-            else if (phase == 2 && rb.position.y <= -15.5)
+            else if (phase == 2 && rb.position.y <= -15)
             {
                 phase = 3;
             }
 
-            if (phase == 3 && rb.position.x > 26.5)
+            if (phase == 3 && rb.position.x > 26.52)
             {
                 rb.velocity = new Vector2(-11, 0);
             }
             else if (phase == 3 && rb.position.x <= 26.52)
             {
+
                 phase = 4;
-                
             }
 
             if (phase == 4)
             {
-                cutsceneDone = true;
                 phase = 5;
+                rb.velocity = Vector2.zero;
+                Instantiate(brickPreFab, new Vector2((float) 23.5, (float) -15), Quaternion.identity);
+                rb.velocity = new Vector2(0f, 0f);
             }
+
+            if (phase == 5 && tempTime > 0f)
+            {
+                tempTime -= Time.deltaTime;
+            } else if (phase == 5 && tempTime <= 0f)
+            {
+                phase = 6;
+            }
+
+            if (phase == 6 && rb.position.x < 41)
+            {
+                rb.velocity = new Vector2(5f, 0f);
+                
+            }  else if (phase == 6 && rb.position.x >= 41)
+            {
+                rb.velocity = Vector2.zero;
+                cutsceneDone = true;
+            }
+            
         
         }
         if (cutsceneDone)
@@ -88,7 +117,48 @@ public class EnemyBehaviourScript : MonoBehaviour
                     GameObject clone = Instantiate(firePreFab, tr.position, Quaternion.identity);
                     time = 0.5f;
 
-                    clone.BroadcastMessage("MoveTowards", (PlayerSprite.GetComponent<Rigidbody2D>().position - rb.position) * 30);
+                    // float angle = Vector2.Angle(rb.position, PlayerSprite.GetComponent<Rigidbody2D>().position);
+                    // Debug.Log(angle);
+                    float dashSpeed = 20;
+                    Vector2 relativePos = PlayerSprite.GetComponent<Rigidbody2D>().position - rb.position;
+                    Vector2 forceToApply = new Vector2(0, 0);
+                    double xDistance = System.Math.Cos(System.Math.Atan(relativePos.y / relativePos.x)) * dashSpeed;
+                    double yDistance = System.Math.Sin(System.Math.Atan(relativePos.y / relativePos.x)) * dashSpeed;
+                    
+                    if (relativePos.y == 0)
+                    {
+                        if (relativePos.x < 0)
+                        {
+                            forceToApply = new Vector2(-dashSpeed, 0);
+                        }
+                        else if (relativePos.x > 0)
+                        {
+                            forceToApply = new Vector2(dashSpeed, 0);
+                        }
+                    }
+                    else if (relativePos.y < 0)
+                    {
+                        if (relativePos.x > 0)
+                        {
+                            forceToApply = new Vector2((float) xDistance, (float) yDistance);
+                        }
+                        else
+                        {
+                            forceToApply = new Vector2((float) xDistance * -1, (float) yDistance * -1);
+                        }
+                    }
+                    else
+                    {
+                        if (relativePos.x > 0)
+                        {
+                            forceToApply = new Vector2((float) xDistance, (float) yDistance);
+                        }
+                        else
+                        {
+                            forceToApply = new Vector2((float) xDistance * -1, (float) yDistance * -1);
+                        }
+                    }
+                    clone.GetComponent<Rigidbody2D>().velocity = forceToApply;
                 }
             }
         }

@@ -8,6 +8,7 @@ public class FireBehaviour : MonoBehaviour
     public Transform tr;
     public Collider2D collider;
     public Rigidbody2D rb;
+    
     void onEnable()
     {
         
@@ -16,19 +17,29 @@ public class FireBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rb.IsTouching(GameObject.Find("Walls").GetComponentInChildren<CompositeCollider2D>()))
+        if (GameObject.Find("SingleBrick(Clone)") != null)
         {
-            Destroy(this.gameObject);
+            if (rb.IsTouching(GameObject.Find("Walls").GetComponentInChildren<CompositeCollider2D>()) || rb.IsTouching(GameObject.Find("SingleBrick(Clone)").GetComponent<Collider2D>()) || rb.IsTouching(GameObject.Find("BossWalls").GetComponentInChildren<CompositeCollider2D>()))
+            {
+                Destroy(this.gameObject);
+            }
         }
-
-        if (rb.IsTouching(GameObject.Find("Player").GetComponentInChildren<BoxCollider2D>()))
+        else
         {
-            GameObject.Find("Player").GetComponentInChildren<Rigidbody2D>().AddForce(rb.velocity * 100);
+            if (rb.IsTouching(GameObject.Find("Walls").GetComponentInChildren<CompositeCollider2D>()) || rb.IsTouching(GameObject.Find("BossWalls").GetComponentInChildren<CompositeCollider2D>()))
+            {
+                Destroy(this.gameObject);
+            }
+        }
+        if (rb.IsTouching(GameObject.Find("Player").GetComponent<Collider2D>()))
+        {
+            GameObject.Find("Player").GetComponent<PlayerBehaviour>().currentHealth -= 1;
+            Destroy(this.gameObject);
         }
     }
 
     public void MoveTowards(Vector2 amount)
     {
-        rb.AddForce(amount);
+        rb.velocity = amount;
     }
 }
