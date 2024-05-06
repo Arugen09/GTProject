@@ -15,6 +15,8 @@ public class EnemyBehaviourScript : MonoBehaviour
     public GameObject brickPreFab;
     public GameObject coverUp;
     public int phase = 0;
+    public Collider2D playerCollider;
+    public PlayerBehaviour playerScript;
 
     public float tempTime = 2f;
 
@@ -27,7 +29,6 @@ public class EnemyBehaviourScript : MonoBehaviour
         if ((Vector2) rb.position == new Vector2(-58f, -22.5f))
         {
             Destroy(GetComponent<EnemyBehaviourScript>());
-            
         }
     }
 
@@ -37,6 +38,11 @@ public class EnemyBehaviourScript : MonoBehaviour
 
         if (!cutsceneDone)
         {
+            if (rb.IsTouching(playerCollider))
+            {
+                playerScript.currentHealth = 0;
+            }
+
             if (phase == 1  && rb.position.x < 41)
             {
                 rb.velocity = new Vector2(10, 0);

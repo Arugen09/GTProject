@@ -21,7 +21,7 @@ public class CameraScript : MonoBehaviour
     {
         if (isFollowing)
         {
-            c.orthographicSize = 4;
+            c.orthographicSize = 7;
             Transform playerTransform = Player.GetComponent<Transform>();
             tr.position = new Vector3(playerTransform.position.x, playerTransform.position.y, -10f);
         }
