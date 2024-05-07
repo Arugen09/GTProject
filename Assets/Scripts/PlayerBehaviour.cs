@@ -13,7 +13,7 @@ public class PlayerBehaviour : MonoBehaviour
     public HealthBar healthBar;
     public int currentHealth = 30;
     public float dashSpeed;
-    public float coolDownTime = 2f;
+    public float coolDownTime = 0f;
     public bool isInBossRoom = true;
     private bool hasDowned;
     public Vector2 lastCheckpoint;
@@ -49,8 +49,7 @@ public class PlayerBehaviour : MonoBehaviour
                     isTouchingPlatform = true;
                 }
             }
-            Debug.Log(rb.IsTouching(waterCollider));
-            if (rb.IsTouching(waterCollider) || (waterCollider.bounds.Contains(new Vector3(rb.position.x, rb.position.y, 0f))) && !isTouchingPlatform)
+            if ((rb.IsTouching(waterCollider) || (waterCollider.bounds.Contains(new Vector3(rb.position.x, rb.position.y, 0f)))) && !isTouchingPlatform)
             {
                 currentHealth = 0;
             }
@@ -72,20 +71,36 @@ public class PlayerBehaviour : MonoBehaviour
                     Vector2 relativePos = new Vector2((mousePos.x - transform.position.x), (mousePos.y - transform.position.y));
                     if (relativePos.magnitude > 5)
                     {
-                        double xDistance = System.Math.Cos(System.Math.Atan(relativePos.y / relativePos.x)) * 5;
-                        double yDistance = System.Math.Sin(System.Math.Atan(relativePos.y / relativePos.x)) * 5;
+                        float xDistance = (float) System.Math.Cos(System.Math.Atan(relativePos.y / relativePos.x)) * 5;
+                        float yDistance = (float) System.Math.Sin(System.Math.Atan(relativePos.y / relativePos.x)) * 5;
+
                         if (relativePos.x < 0)
                         {
-                            yDistance *= -1;
-                            xDistance *= -1;
+                            yDistance *= -1f;
+                            xDistance *= -1f;
                         }
-
-                        transform.Translate((float)xDistance, (float)yDistance, 0f);
+                        LayerMask mask = LayerMask.GetMask("Walls");
+                        RaycastHit2D hit2D = Physics2D.Raycast(rb.position, new Vector2(xDistance, yDistance), (new Vector2(xDistance, yDistance)).magnitude, mask);
+                        Vector2 finalChange = new Vector2(xDistance, yDistance);
+                        if (hit2D.collider != null)
+                        {
+                            finalChange = finalChange * ((hit2D.distance - 0.5f)/(finalChange.magnitude));
+                        }
+                        transform.Translate(finalChange.x, finalChange.y, 0f);
                     }
                     else
                     {
-                        int x = 0;
-                        transform.Translate((float)relativePos.x, (float)relativePos.y, 0f);
+                        float xDistance = relativePos.x;
+                        float yDistance = relativePos.y;
+
+                        LayerMask mask = LayerMask.GetMask("Walls");
+                        RaycastHit2D hit2D = Physics2D.Raycast(rb.position, new Vector2(xDistance, yDistance), (new Vector2(xDistance, yDistance)).magnitude, mask);
+                        Vector2 finalChange = new Vector2(xDistance, yDistance);
+                        if (hit2D.collider != null)
+                        {
+                            finalChange = finalChange * ((hit2D.distance - 0.5f)/(finalChange.magnitude));
+                        }
+                        transform.Translate(finalChange.x, finalChange.y, 0f);
                     }
 
                 }
@@ -121,7 +136,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (lastCheckpointID == 0)
         {
-            print("CLICKED!!!");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         else

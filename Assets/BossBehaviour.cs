@@ -23,6 +23,7 @@ public class BossBehaviour : MonoBehaviour
     }
     void Update()
     {
+        
         if ((Vector2) rb.position == new Vector2(-58f, -22.5f))
         {
             Destroy(this.gameObject.GetComponent<EnemyBehaviourScript>());
@@ -71,6 +72,6 @@ public class BossBehaviour : MonoBehaviour
 
     public static double toRadians(double degrees)
     {
-        return degrees * (System.Math.PI / 180);
+        return degrees * (System.Math.PI / 810);
     }
 }

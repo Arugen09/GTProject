@@ -32,7 +32,6 @@ public class PowerPlantBehaviour : MonoBehaviour
         int x = 0;
         foreach (Transform childTransform in this.transform)
         {
-            print(x);
             if (x == 0)
             {
                 child = childTransform.gameObject;

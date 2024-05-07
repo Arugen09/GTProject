@@ -6,6 +6,7 @@ public class EnemyBehaviourScript : MonoBehaviour
 {
 
     public Rigidbody2D rb;
+    public SpriteRenderer spriteRenderer;
     public Transform tr;
     public GameObject PlayerSprite;
     public GameObject firePreFab;
@@ -13,12 +14,12 @@ public class EnemyBehaviourScript : MonoBehaviour
     public float time = 0.5f;
     public bool cutsceneDone = false;
     public GameObject brickPreFab;
-    public GameObject coverUp;
     public int phase = 0;
     public Collider2D playerCollider;
     public PlayerBehaviour playerScript;
-
     public float tempTime = 2f;
+    public Sprite[] bossSprites;
+    private bool hasPlayerMoved = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,17 +27,25 @@ public class EnemyBehaviourScript : MonoBehaviour
         PlayerSprite = GameObject.Find("Player");
         phase = 1;
         print(rb.position);
+        bossSprites = Resources.LoadAll<Sprite>("Sprites/BossSprites");
         if ((Vector2) rb.position == new Vector2(-58f, -22.5f))
         {
             Destroy(GetComponent<EnemyBehaviourScript>());
+        }
+        else
+        {
+            spriteRenderer.sprite = bossSprites[2];
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (!cutsceneDone)
+        if (!hasPlayerMoved && Input.anyKey)
+        {
+            hasPlayerMoved = true;
+        }
+        if (!cutsceneDone && hasPlayerMoved)
         {
             if (rb.IsTouching(playerCollider))
             {
@@ -45,29 +54,32 @@ public class EnemyBehaviourScript : MonoBehaviour
 
             if (phase == 1  && rb.position.x < 41)
             {
-                rb.velocity = new Vector2(10, 0);
+
+                rb.velocity = new Vector2(12.5f, 0);
             }
             else if (rb.position.x >= 41 && phase == 1)
             {
                 phase += 1;
+                spriteRenderer.sprite = bossSprites[1];
             }
 
             if (phase == 2 && rb.position.y > -15)
             {
-                rb.velocity = new Vector2(0, -10);
+                rb.velocity = new Vector2(0, -12.5f);
             }
             else if (phase == 2 && rb.position.y <= -15)
             {
                 phase = 3;
+                tr.localScale = new Vector3(-1f, 1f, 1f);
+                spriteRenderer.sprite = bossSprites[2];
             }
 
             if (phase == 3 && rb.position.x > 26.52)
             {
-                rb.velocity = new Vector2(-11, 0);
+                rb.velocity = new Vector2(-13.5f, 0);
             }
             else if (phase == 3 && rb.position.x <= 26.52)
             {
-
                 phase = 4;
             }
 
@@ -90,6 +102,7 @@ public class EnemyBehaviourScript : MonoBehaviour
             if (phase == 6 && rb.position.x < 41)
             {
                 rb.velocity = new Vector2(5f, 0f);
+                tr.localScale = new Vector3(1f, 1f, 1f);
                 
             }  else if (phase == 6 && rb.position.x >= 41)
             {

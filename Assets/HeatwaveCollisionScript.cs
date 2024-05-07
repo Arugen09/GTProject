@@ -5,6 +5,7 @@ using UnityEngine;
 public class HeatwaveCollisionScript : MonoBehaviour
 {
     public PlayerBehaviour pb;
+    public int damageAmount = 2;
     // Start is called before the first frame update
     void Start()
     {

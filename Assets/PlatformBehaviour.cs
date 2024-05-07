@@ -15,7 +15,15 @@ public class PlatformBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerCollider = GameObject.Find("Player").GetComponent<Collider2D>();
+        if (isMovingHorizontal)
+        {
+            rb.velocity = new Vector2(speed, 0f);
+        }
+        else
+        {
+            rb.velocity = new Vector2(0f, speed);
+        }
     }
 
     // Update is called once per frame

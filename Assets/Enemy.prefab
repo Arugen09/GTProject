@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 3316251114127565651}
   - component: {fileID: 2754295234416272048}
   - component: {fileID: 4498637414826731969}
-  - component: {fileID: 3717392695353105237}
   - component: {fileID: 3887349659468602869}
+  - component: {fileID: 6833259601517166357}
+  - component: {fileID: 3359988078042089997}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: fa2bfd5e04f751c43a06ba32a97e6906, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,7 +100,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 10000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -114,8 +115,55 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &3717392695353105237
-BoxCollider2D:
+--- !u!114 &3887349659468602869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682440197645552153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ec361033ad24dadbcb968de173f379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 4498637414826731969}
+  spriteRenderer: {fileID: 2754295234416272048}
+  tr: {fileID: 3316251114127565651}
+  PlayerSprite: {fileID: 0}
+  firePreFab: {fileID: 6083132986464240133, guid: d1184d2477da44843a499192528a56e0, type: 3}
+  shouldStartTimer: 0
+  time: 0
+  cutsceneDone: 0
+  brickPreFab: {fileID: 4681325331087079608, guid: 0184e38675fbe2248a79f809e242231b, type: 3}
+  phase: 0
+  playerCollider: {fileID: 0}
+  playerScript: {fileID: 0}
+  tempTime: 2
+  bossSprites: []
+--- !u!114 &6833259601517166357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682440197645552153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd43f5505360b9a44a864cb4fd89a03b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolDown: 5
+  rb: {fileID: 4498637414826731969}
+  tr: {fileID: 3316251114127565651}
+  PlayerSprite: {fileID: 0}
+  firePreFab: {fileID: 6083132986464240133, guid: d1184d2477da44843a499192528a56e0, type: 3}
+  time: 0.5
+  isNowBoss: 0
+  heatWaveSystem: {fileID: 8523824492275415377, guid: 4b6a59eda074905448cff008bdde5889, type: 3}
+  attacksLeft: 0
+--- !u!60 &3359988078042089997
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -150,33 +198,33 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 6, y: 6}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &3887349659468602869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682440197645552153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58ec361033ad24dadbcb968de173f379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 4498637414826731969}
-  tr: {fileID: 3316251114127565651}
-  PlayerSprite: {fileID: 0}
-  firePreFab: {fileID: 6083132986464240133, guid: d1184d2477da44843a499192528a56e0, type: 3}
-  shouldStartTimer: 0
-  time: 0
-  cutsceneDone: 0
-  brickPreFab: {fileID: 4681325331087079608, guid: 0184e38675fbe2248a79f809e242231b, type: 3}
-  phase: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.023250103, y: -2.6474948}
+      - {x: -2.101286, y: -2.664257}
+      - {x: -2.4552178, y: -2.487532}
+      - {x: -2.2756805, y: -2.2449188}
+      - {x: -1.9090981, y: -0.47885376}
+      - {x: -1.4685173, y: 0.818983}
+      - {x: -1.0586543, y: 1.6706371}
+      - {x: -0.55633163, y: 2.298788}
+      - {x: -0.31566715, y: 2.3083923}
+      - {x: -0.2812953, y: 2.367076}
+      - {x: -0.16596508, y: 2.3967085}
+      - {x: 0.23455024, y: 2.5125813}
+      - {x: 0.6152165, y: 2.4476967}
+      - {x: 0.7805929, y: 2.3425252}
+      - {x: 0.98969316, y: 1.9999269}
+      - {x: 1.0692825, y: 1.3201084}
+      - {x: 1.7162712, y: -0.7090117}
+      - {x: 1.9389465, y: -1.1594164}
+      - {x: 2.072084, y: -1.884967}
+      - {x: 2.2221546, y: -2.520325}
+      - {x: 1.7936168, y: -2.6435528}
+  m_UseDelaunayMesh: 0
