@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour
     // Start is called before the first frame update
     void FixedUpdate()
     {
-        if (!GameObject.Find("CameraScript").GetComponent<CameraScript>().isFollowing)
+        if (GameObject.Find("CameraScript").GetComponent<CameraScript>().isFollowing && !GameObject.Find("CameraScript").GetComponent<CameraScript>().isInBossRoom)
         {
             cr.SetAlpha(0);
         }

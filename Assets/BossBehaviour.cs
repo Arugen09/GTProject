@@ -14,6 +14,7 @@ public class BossBehaviour : MonoBehaviour
     public GameObject heatWaveSystem;
     public int attacksLeft = 0;
     public float bossHealth = 50;
+    public HealthBar healthScript;
 
     // Start is called before the first frame update
 
@@ -33,6 +34,8 @@ public class BossBehaviour : MonoBehaviour
         }
         if (isNowBoss)
         {
+            healthScript.SetHealth((int)bossHealth);
+
             if (coolDown >= 0)
             {
                 coolDown -= Time.deltaTime;
@@ -40,7 +43,7 @@ public class BossBehaviour : MonoBehaviour
 
             if (coolDown <= 0 && attacksLeft == 0)
             {
-                int choice = (int) (Random.value * 2 ) + 1;
+                int choice = (int)(Random.value * 2) + 1;
                 if (choice > 1)
                 {
                     coolDown = 0.5f;
@@ -63,6 +66,11 @@ public class BossBehaviour : MonoBehaviour
                     attacksLeft--;
                 }
             }
+            if (bossHealth <= 0)
+            {
+                isNowBoss = false;
+                
+            }
         }
     }
 
@@ -75,4 +83,6 @@ public class BossBehaviour : MonoBehaviour
     {
         return degrees * (System.Math.PI / 810);
     }
+
+    public void setHealth
 }
