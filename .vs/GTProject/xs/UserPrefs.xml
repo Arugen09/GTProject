@@ -1,12 +1,19 @@
 ﻿<Properties StartupConfiguration="{6E948C69-796A-5080-FE4D-8199C460A519}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PlatformBehaviour.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CanvasScrit.cs">
     <Files>
-      <File FileName="Assets/PowerPlantBehaviour.cs" Line="35" Column="22" />
-      <File FileName="Assets/Scripts/PlayerBehaviour.cs" Line="106" Column="13" />
-      <File FileName="Assets/CheckPointBehaviour.cs" Line="16" Column="39" />
-      <File FileName="Assets/Scripts/EnemyBehaviourScript.cs" Line="43" Column="48" />
-      <File FileName="Assets/CameraScript.cs" Line="24" Column="35" />
-      <File FileName="Assets/PlatformBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerBehaviour.cs" Line="153" Column="50" IsPinned="True" />
+      <File FileName="Assets/CheckPointBehaviour.cs" Line="1" Column="1" IsPinned="True" />
+      <File FileName="Assets/PowerPlantBehaviour.cs" Line="59" Column="49" />
+      <File FileName="Assets/Scripts/EnemyBehaviourScript.cs" />
+      <File FileName="Assets/CameraScript.cs" />
+      <File FileName="Assets/PlatformBehaviour.cs" />
+      <File FileName="Assets/HeatwaveCollisionScript.cs" />
+      <File FileName="Assets/CoverupScript.cs" />
+      <File FileName="Assets/SwordBehaviour.cs" Line="7" Column="26" />
+      <File FileName="Assets/SwordBehaviour.cs" Line="28" Column="1" />
+      <File FileName="Assets/BossBehaviour.cs" Line="16" Column="34" />
+      <File FileName="Assets/HealthBar.cs" Line="1" Column="1" />
+      <File FileName="Assets/CanvasScrit.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,7 +21,7 @@
           <Node name="GTProject" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True" />
-              <Node name="PlatformBehaviour.cs" selected="True" />
+              <Node name="CanvasScrit.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -23,7 +30,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="9921ffae-edbe-4fbb-b8a3-8d1a95ea011f" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="d9547bcd-78e8-4e2a-b866-067ac690590f" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -20,10 +20,9 @@ public class HeatwaveCollisionScript : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        print(other.name);
         if (string.Equals(other.name, "Player"))
         {
-            pb.currentHealth -= 2;
+            pb.currentHealth -= damageAmount;
         }
     }
 }

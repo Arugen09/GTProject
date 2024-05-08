@@ -13,6 +13,7 @@ public class BossBehaviour : MonoBehaviour
     public bool isNowBoss = false;
     public GameObject heatWaveSystem;
     public int attacksLeft = 0;
+    public float bossHealth = 50;
 
     // Start is called before the first frame update
 

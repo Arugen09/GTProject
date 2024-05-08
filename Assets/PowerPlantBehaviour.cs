@@ -25,6 +25,8 @@ public class PowerPlantBehaviour : MonoBehaviour
 
     public float timeToSee = 9f;
 
+    public SpriteRenderer sr;
+
 
     // Start is called before the first frame update
     void Start()
@@ -54,8 +56,11 @@ public class PowerPlantBehaviour : MonoBehaviour
         if ((hasPannedCamera || hasExploded) && !hasFinishedPanning)
         {
             timeToSee -= Time.deltaTime;
+            sr.color = new Color(255f, 255f, 255f, (255f * (timeToSee / 7f)));
+            //tr.localScale = new Vector3(5f, (float)(timeToSee / 7f) * 5f, 1f);
+            //tr.position = new Vector3(10f, (tr.localScale.y / 5f) * -39f, 0f);
         }
-
+        
         if (hasPannedCamera && timeToSee <= 7)
         {
             particles = Instantiate(ps, tr.position, Quaternion.identity);
@@ -65,8 +70,8 @@ public class PowerPlantBehaviour : MonoBehaviour
 
         if (hasExploded && timeToSee <= 0)
         {
-            camera.resetCamera();
             hasFinishedPanning = true;
+            tr.localScale = new Vector3(0f, 0f, 0f);
         }
 
         // if (hasExploded && particles.GetComponent<duration)
