@@ -24,5 +24,9 @@ public class HeatwaveCollisionScript : MonoBehaviour
         {
             pb.currentHealth -= damageAmount;
         }
+        else if (string.Equals(other.name, "Sword"))
+        {
+            pb.currentHealth += damageAmount;
+        }
     }
 }

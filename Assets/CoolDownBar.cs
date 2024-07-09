@@ -13,8 +13,17 @@ public class CoolDownBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        slider.value = 2f - GameObject.Find("Player").GetComponent<PlayerBehaviour>().coolDownTime;
-        if (slider.value == 2)
+        if (GameObject.Find("Player").GetComponent<PlayerBehaviour>().hasSword)
+        {
+            slider.value = (0.7f - GameObject.Find("Player").GetComponent<PlayerBehaviour>().coolDownTime)/0.7f;
+        }
+        else
+        {
+            slider.value = (2f - GameObject.Find("Player").GetComponent<PlayerBehaviour>().coolDownTime)/2f;
+            
+        }
+
+        if (slider.value == 1)
         {
             image.color = new Color(0.425f, 1f, 0.375f, 1f);
         }
@@ -22,5 +31,6 @@ public class CoolDownBar : MonoBehaviour
         {
             image.color = new Color(0.375f, 0.575f, 1f, 1f);
         }
+        
     }
 }

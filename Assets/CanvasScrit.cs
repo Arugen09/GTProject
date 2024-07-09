@@ -17,7 +17,6 @@ public class CanvasScrit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        tr.position = new Vector3(objectToFollow.position.x, objectToFollow.position.y, offsetUp);
+        tr.position = new Vector3(objectToFollow.position.x, objectToFollow.position.y + offsetUp, 90);
     }
 }

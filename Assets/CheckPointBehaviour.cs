@@ -24,6 +24,7 @@ public class CheckPointBehaviour : MonoBehaviour
             playerScript.lastCheckpoint = rb.position;
             playerScript.lastCheckpointID = id;
             sr.color = new Color(0, 1, 0);
+            playerScript.currentHealth = 30;
         }
     }
 }

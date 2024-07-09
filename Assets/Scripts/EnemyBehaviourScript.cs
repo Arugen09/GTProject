@@ -11,6 +11,7 @@ public class EnemyBehaviourScript : MonoBehaviour
     public GameObject PlayerSprite;
     public GameObject firePreFab;
     public bool shouldStartTimer = false;
+    public GameObject heatWave;
     public float time = 0.5f;
     public bool cutsceneDone = false;
     public GameObject brickPreFab;
@@ -60,6 +61,10 @@ public class EnemyBehaviourScript : MonoBehaviour
             else if (rb.position.x >= 41 && phase == 1)
             {
                 phase += 1;
+                Instantiate(heatWave, tr);
+                Instantiate(heatWave, tr);
+                Instantiate(heatWave, tr);
+                Instantiate(heatWave, tr);
                 spriteRenderer.sprite = bossSprites[1];
             }
 
@@ -81,6 +86,7 @@ public class EnemyBehaviourScript : MonoBehaviour
             else if (phase == 3 && rb.position.x <= 26.52)
             {
                 phase = 4;
+                
             }
 
             if (phase == 4)
@@ -89,6 +95,10 @@ public class EnemyBehaviourScript : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 Instantiate(brickPreFab, new Vector2((float) 23.5, (float) -15), Quaternion.identity);
                 rb.velocity = new Vector2(0f, 0f);
+                Instantiate(heatWave, tr);
+                Instantiate(heatWave, tr);
+                Instantiate(heatWave, tr);
+                Instantiate(heatWave, tr);
             }
 
             if (phase == 5 && tempTime > 0f)

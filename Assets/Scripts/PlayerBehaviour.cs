@@ -27,6 +27,9 @@ public class PlayerBehaviour : MonoBehaviour
     public SwordBehaviour swordScript;
     public float finalAngle = 0;
     public float middleAngle = 0;
+    public Rigidbody2D bossRB;
+
+    public Collider2D teleporterCollider;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,14 @@ public class PlayerBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         updateHealth();
+        if (playerRB.IsTouching(teleporterCollider))
+        {
+            playerRB.position = new Vector2(-71.5f, -22.5f);
+            bossRB.position = new Vector2(-58f, -22.5f);
+            isInBossRoom = true;
+            GameObject.Find("CameraScript").GetComponent<CameraScript>().isFollowing = false;
+            GameObject.Find("CameraScript").GetComponent<CameraScript>().isInBossRoom = true;
+        }
         if (currentHealth <= 0)
         {
             hasDied();
@@ -48,14 +59,15 @@ public class PlayerBehaviour : MonoBehaviour
             bool isTouchingPlatform = false;
             foreach (GameObject item in GameObject.FindGameObjectsWithTag("Platform"))
             {
-                if (item.GetComponent<Rigidbody2D>().IsTouching(playerCollider))
+                if (item.GetComponent<Rigidbody2D>().IsTouching(playerCollider) || item.GetComponent<Collider2D>().bounds.Contains(new Vector3(playerRB.position.x, playerRB.position.y, 0f)))
                 {
                     isTouchingPlatform = true;
                 }
             }
             if ((playerRB.IsTouching(waterCollider) || waterCollider.bounds.Contains(new Vector3(playerRB.position.x, playerRB.position.y, 0f))) && !isTouchingPlatform)
             {
-                //currentHealth = 0;
+                currentHealth = 0;
+
             }
             if (!isTouchingPlatform)
             {
@@ -118,7 +130,7 @@ public class PlayerBehaviour : MonoBehaviour
                 if (Input.GetMouseButton(0) && !hasDowned && coolDownTime <= 0)
                 {
                     hasDowned = true;
-                    coolDownTime = 2f;
+                    coolDownTime = 0.7f;
 
 
                     Vector3 mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
@@ -204,6 +216,9 @@ public class PlayerBehaviour : MonoBehaviour
             playerTransform.position = lastCheckpoint;
             currentHealth = 30;
             coolDownTime = 0;
+            GameObject.Find("CameraScript").GetComponent<CameraScript>().isFollowing = true;
+            GameObject.Find("CameraScript").GetComponent<CameraScript>().isInBossRoom = false;
+            isInBossRoom = false;
         }
     }
 }

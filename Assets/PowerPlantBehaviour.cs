@@ -72,6 +72,12 @@ public class PowerPlantBehaviour : MonoBehaviour
         {
             hasFinishedPanning = true;
             tr.localScale = new Vector3(0f, 0f, 0f);
+            Destroy(this.gameObject);
+        }
+
+        if (hasExploded && timeToSee <= 7)
+        {
+            sr.color = new Color(1f, 1f, 1f, ((timeToSee))/7f);
         }
 
         // if (hasExploded && particles.GetComponent<duration)

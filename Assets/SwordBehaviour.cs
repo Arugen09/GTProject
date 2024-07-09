@@ -32,10 +32,17 @@ public class SwordBehaviour : MonoBehaviour
         {
             if (!startSlashing)
             {
+                hasTouchedBoss = false;
                 startSlashing = true;
                 swordTransform.localScale = Vector3.one;
             }
             
+            if (swordBody.IsTouching(enemyCollider) && !hasTouchedBoss)
+            {
+                hasTouchedBoss = true;
+                bossScript.bossHealth -= 5;
+            }
+
             if (time >= 0f)
             {
                 time -= Time.deltaTime;
@@ -72,14 +79,6 @@ public class SwordBehaviour : MonoBehaviour
 
         swordBody.position = playerBody.position;
 
-        if (swordBody.IsTouching(enemyCollider) && !hasTouchedBoss)
-        {
-            hasTouchedBoss = true;
-            bossScript.bossHealth -= 5;
-        }
-        else if (!swordBody.IsTouching(enemyCollider))
-        {
-            hasTouchedBoss = false;
-        }
+        
     }
 }

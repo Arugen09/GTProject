@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class BossBehaviour : MonoBehaviour
 {
-    public float coolDown = 0f;
+    public float coolDown = 3f;
     public Rigidbody2D rb;
     public Transform tr;
+    public Collider2D collider;
     public GameObject PlayerSprite;
     public GameObject firePreFab;
     public float time = 0.5f;
@@ -34,8 +35,12 @@ public class BossBehaviour : MonoBehaviour
         }
         if (isNowBoss)
         {
-            healthScript.SetHealth((int)bossHealth);
-
+            healthScript.SetHealth((int) bossHealth);
+            if (bossHealth <= 0)
+            {
+                collider.isTrigger = true;
+                Destroy(this);
+            }
             if (coolDown >= 0)
             {
                 coolDown -= Time.deltaTime;
@@ -76,13 +81,11 @@ public class BossBehaviour : MonoBehaviour
 
     void heatWave()
     {
-        Instantiate(heatWaveSystem);
+        Instantiate(heatWaveSystem, tr);
     }
 
     public static double toRadians(double degrees)
     {
         return degrees * (System.Math.PI / 810);
     }
-
-    public void setHealth
 }
